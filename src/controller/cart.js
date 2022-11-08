@@ -72,6 +72,13 @@ class Cart {
 
         await this.saveData(carts);
     }
+    async getProdById(id, id_prod) {
+        const carts = await this.getData();
+        const indiceCart = carts.findIndex((cart) => cart.id === id);
+        const indiceProd = carts[indiceCart].prods.findIndex((prod) => prod.id === id_prod);
+
+        return carts[indiceCart].prods[indiceProd]        
+    }
 }
 
 const CartController = new Cart('src/data/cart.json');

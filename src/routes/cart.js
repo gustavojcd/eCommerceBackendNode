@@ -11,7 +11,15 @@ routerCart.route('/:id')
     .delete(async (req, res, next) => {
         try {
             const { id } = req.params;
+            const cart = await CartController.getById(id)
+            if (!cart)
+                return res.status(404).json({
+                    msg: 'Cart not found',
+                });
             await CartController.deleteCartById(id);
+            res.status(200).json({
+                msg: 'Cart deleted',
+            });
         } catch (err) {
             next(err);
         }
@@ -55,6 +63,7 @@ routerCart.route('/:id/productos')
             cart.prods.push(producto);
 
             await CartController.Update(id, cart)
+            res.status(200).json({ msg: 'Product has been added to cart' })
         } catch (err) {
             next(err);
         }
@@ -65,7 +74,21 @@ routerCart.route('/:id/productos/:id_prod')
             const { id } = req.params;
             const { id_prod } = req.params;
 
+            const cart = await CartController.getById(id)
+            if (!cart)
+                return res.status(404).json({
+                    msg: 'Cart not found',
+                });
+            const prod = await CartController.getProdById(id, id_prod)
+            if (!prod)
+                return res.status(404).json({
+                    msg: 'product not found in cart'
+                })
             await CartController.deleteProdById(id, id_prod);
+
+            res.status(200).json({
+                msg: 'Product from Cart has been deleted',
+            });
         } catch (err) {
             next(err);
         }

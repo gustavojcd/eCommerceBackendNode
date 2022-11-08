@@ -38,7 +38,7 @@ routerProducts.route('/:id')
 
             if (!name || !description || !code || !stock || !price || !photo) {
                 return res.status(400).json({
-                    error: "Campos Vacios "
+                    error: "Campos Vacios"
                 })
             }
 
@@ -64,9 +64,14 @@ routerProducts.route('/:id')
     .delete(validarAdmin, async (req, res, next) => {
         try {
             const { id } = req.params;
+            const product = await ProductsController.getById(id)
+            if (!product)
+                return res.status(404).json({
+                    msg: 'Product not found',
+                });
             await ProductsController.deleteById(id);
-            res.json({
-                msg: 'Ok',
+            res.status(200).json({
+                msg: 'Product deleted',
             });
         } catch (err) {
             next(err);
@@ -86,7 +91,7 @@ routerProducts.route('/')
     })
     .post(validarAdmin, async (req, res, next) => {
         try {
-            const { name, description, code, stock, price, photo } = req.body
+            const { name, description, code, stock, price, photo } = req.body;
 
             if (!name || !description || !code || !stock || !price || !photo) {
                 return res.status(400).json({
