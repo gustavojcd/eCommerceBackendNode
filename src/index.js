@@ -1,5 +1,12 @@
 const server = require('./services/server')
+const { initMongoDB } = require('./db/database');
 
 const PORT = process.env.PORT || 8080
 
-server.listen(PORT)
+const init = async () => {
+    await initMongoDB();
+    server.listen(PORT)
+}
+
+init()
+
