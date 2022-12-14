@@ -1,8 +1,8 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const connectionString = 'mongodb+srv://gustavo:{123456}@ecommerce.hujaatp.mongodb.net/ecommerce?retryWrites=true&w=majority';
 
-const initMongoDB = async () => {
+export const initMongoDB = async () => {
     try {
         console.log('Conectando ...')
         await mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -13,7 +13,7 @@ const initMongoDB = async () => {
     }
 };
 
-const exitMongo = async () => {
+export const exitMongo = async () => {
     try {
         console.log('Desconectando ...');
         await mongoose.disconnect()
@@ -23,5 +23,3 @@ const exitMongo = async () => {
         return error;
     }
 }
-
-module.exports = { initMongoDB, exitMongo }

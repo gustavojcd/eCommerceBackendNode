@@ -1,5 +1,5 @@
-const mongoose = require('mongoose')
-const {ProductsModel} = require('./products')
+import mongoose from 'mongoose';
+import { ProductsModel } from './products';
 
 const cartsCollectionName = 'carritos'
 
@@ -13,11 +13,7 @@ const cartsSchema = new mongoose.Schema(
     }
 )
 
-const CartModel = mongoose.model(
+export const CartModel = mongoose.model(
     cartsCollectionName,
     cartsSchema
 )
-
-module.exports = {
-    CartModel
-}

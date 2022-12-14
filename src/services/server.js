@@ -1,7 +1,7 @@
-const express = require('express');
-const router = require('../routes/main');
-const handleError = require('../middleware/error');
-const notFound = require('../middleware/notFound');
+import express from 'express';
+import router from '../routes/main';
+import handleError from '../middleware/error';
+import notFound from '../middleware/notFound';
 
 const app = express();
 
@@ -13,4 +13,4 @@ app.use(handleError);
 
 app.use(notFound);
 
-module.exports = app;
+export default app;

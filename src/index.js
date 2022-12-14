@@ -1,5 +1,5 @@
-const server = require('./services/server')
-const { initMongoDB } = require('./db/database');
+import server from './services/server'
+import { initMongoDB } from './db/database';
 
 const PORT = process.env.PORT || 8080
 

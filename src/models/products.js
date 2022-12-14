@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose';
 
 const productsCollectionName = 'productos'
 
@@ -14,11 +14,7 @@ const productsSchema = new mongoose.Schema(
     }
 );
 
-const ProductsModel = mongoose.model(
+export const ProductsModel = mongoose.model(
     productsCollectionName,
     productsSchema
 )
-
-module.exports = {
-    ProductsModel
-};

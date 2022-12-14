@@ -1,6 +1,6 @@
-const { CartModel } = require('../models/carts')
+import { CartModel } from '../models/carts'
 
-const createCart = async (req, res, next) => {
+export const createCart = async (req, res, next) => {
     try {
 
         await CartModel.create({
@@ -12,7 +12,7 @@ const createCart = async (req, res, next) => {
         next(err);
     }
 }
-const deleteCartById = async (req, res, next) => {
+export const deleteCartById = async (req, res, next) => {
     try {
         const { id } = req.params;
         const cart = await CartModel.findById(id)
@@ -28,7 +28,7 @@ const deleteCartById = async (req, res, next) => {
         next(err);
     }
 }
-const getAllProductsInCart = async (req, res, next) => {
+export const getAllProductsInCart = async (req, res, next) => {
     try {
         const { id } = req.params;
 
@@ -39,7 +39,7 @@ const getAllProductsInCart = async (req, res, next) => {
         next(err);
     }
 }
-const addProductToCart = async (req, res, next) => {
+export const addProductToCart = async (req, res, next) => {
     try {
         const { id } = req.params;
         const { idProd } = req.body;
@@ -58,7 +58,7 @@ const addProductToCart = async (req, res, next) => {
         next(err);
     }
 }
-const deleteProductInCart = async (req, res, next) => {
+export const deleteProductInCart = async (req, res, next) => {
     try {
         const { id } = req.params;
         const { id_prod } = req.params;
@@ -87,11 +87,4 @@ const deleteProductInCart = async (req, res, next) => {
     } catch (err) {
         next(err);
     }
-}
-module.exports = {
-    createCart,
-    deleteCartById,
-    getAllProductsInCart,
-    addProductToCart,
-    deleteProductInCart
 }

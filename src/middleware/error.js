@@ -3,4 +3,4 @@ const handleError = ((err, req, res, next) => {
     res.status(500).json({ msg: 'Ocurrio un error interno del Servidor' });
 });
 
-module.exports = handleError
+export default handleError

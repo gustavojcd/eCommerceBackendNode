@@ -5,6 +5,4 @@ const validarAdmin = (req, res, next) => {
   else res.status(401).json({ msg: 'No autorizado' });
 };
 
-module.exports = {
-  validarAdmin,
-};
+export default validarAdmin;
