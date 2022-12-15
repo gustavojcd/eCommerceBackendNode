@@ -1,6 +1,9 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const connectionString = 'mongodb+srv://gustavo:{123456}@ecommerce.hujaatp.mongodb.net/ecommerce?retryWrites=true&w=majority';
+dotenv.config()
+
+const connectionString = process.env.MONGO_ATLAS_URL;
 
 export const initMongoDB = async () => {
     try {
